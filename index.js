@@ -1,27 +1,27 @@
-// var async = require('async');
-// var stack = {};
-// stack.getUserName = function(callback){
-//     var UserName = 'Bob';
-//     callback(null,UserName);
-// }
-// stack.getAge = function(callback){
-//     var UserAge = 20;
-//     callback(null,UserAge);
-// }
-// stack.getGender = function(callback){
-//     var UserGender = 'Bob';
-//     callback(null,UserGender);
-// }
+function promisedemo(data){
+    var randomDelay = (Math.round(Math.random() * 1E4) % 8000) + 1000;
+    setTimeout( () => {
+        // console.log(data);
+    }, randomDelay);
+}
+function promises(data) {
+    return new Promise(function (resolve, reject) {
+        promisedemo(data);
+        resolve(data);
+    })
+}
+var p1 = promises("p1");
+var p2 = promises("p2");
+var p3 = promises("p3");
 
-// async.parallel(stack, function(err,result){
-//     console.log(result);
-// })
-
-function demo(data, callback){
+p1.then( (data)=>{
     console.log(data);
-    callback(data);
-}
-function callback(data){
-    console.log(`Data here is: '${data}'`);
-}
-demo('partial', callback);
+    return p2;
+}).then( (data) => {
+    console.log(data);
+    return p3;
+}).then( (data) => {
+    console.log(data);
+    console.log("completed");
+})
+
