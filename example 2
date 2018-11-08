@@ -5,7 +5,7 @@ function promise(args) {
         }, randomDelay);
         console.log("For the",args," promise: ");
         resolve(args);
-        console.log(randomDelay);
+        console.log("Time Delay is ",randomDelay);
     })
 }
 var p1 = promise(1);
