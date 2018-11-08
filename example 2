@@ -1,0 +1,27 @@
+function promise(args) {
+    var randomDelay = (Math.round(Math.random() * 1E4) % 8000) + 1000;
+    return new Promise(function (resolve, reject){
+        setTimeout( () => {
+        }, randomDelay);
+        console.log("For the",args," promise: ");
+        resolve(args);
+        console.log(randomDelay);
+    })
+}
+var p1 = promise(1);
+var p2 = promise(2);
+var p3 = promise(3);
+var p4 = promise(4);
+
+p1.then( (data) =>{
+    console.log("This is the ",data,"th Promise");
+    return p2;
+}).then( (data) =>{
+    console.log("This is the ",data,"th Promise");
+    return p3;
+}).then( (data) =>{
+    console.log("This is the ",data,"th Promise");
+    return p4;
+}).then( (data) =>{
+    console.log("This is the ",data,"th Promise");
+});
